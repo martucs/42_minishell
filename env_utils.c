@@ -6,11 +6,11 @@
 /*   By: martalop <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:25:10 by martalop          #+#    #+#             */
-/*   Updated: 2024/09/17 20:23:41 by martalop         ###   ########.fr       */
+/*   Updated: 2024/12/18 20:35:53 by martalop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "includes/minishell.h"
 #include "libft/libft.h"
 
 int	envlst_size(t_envp *lst)

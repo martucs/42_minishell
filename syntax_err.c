@@ -6,13 +6,13 @@
 /*   By: martalop <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:16:53 by martalop          #+#    #+#             */
-/*   Updated: 2024/10/14 17:01:36 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/12/18 20:39:27 by martalop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "struct.h"
-#include "parsing.h"
+#include "includes/minishell.h"
+#include "includes/struct.h"
+#include "includes/parsing.h"
 
 int	handle_tkn_syntax(t_lex_lst *tokens, int *here_count, int *word)
 {

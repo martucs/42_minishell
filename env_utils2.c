@@ -6,12 +6,12 @@
 /*   By: martalop <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 21:51:04 by martalop          #+#    #+#             */
-/*   Updated: 2024/10/15 12:01:37 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/12/18 20:36:11 by martalop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "minishell.h"
+#include "includes/minishell.h"
 
 int	fill_env_node(char *env_line, t_envp *node, t_envp **env_lst)
 {

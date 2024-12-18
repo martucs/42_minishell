@@ -6,17 +6,17 @@
 /*   By: ineimatu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:56:35 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/10/15 18:16:46 by martalop         ###   ########.fr       */
+/*   Updated: 2024/12/18 20:21:50 by martalop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "includes/minishell.h"
 #include "libft/libft.h"
-#include "lexer.h"
-#include "struct.h"
-#include "parsing.h"
-#include "execution.h"
-#include "expansion.h"
+#include "includes/lexer.h"
+#include "includes/struct.h"
+#include "includes/parsing.h"
+#include "includes/execution.h"
+#include "includes/expansion.h"
 
 int	g_global;
 

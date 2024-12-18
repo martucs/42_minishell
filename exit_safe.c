@@ -6,17 +6,16 @@
 /*   By: ineimatu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:51:18 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/10/15 13:51:39 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/12/18 20:50:12 by martalop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "libft/libft.h"
-#include "lexer.h"
-#include "struct.h"
-#include "parsing.h"
-#include "execution.h"
-#include "expansion.h"
+#include "includes/minishell.h"
+#include "includes/lexer.h"
+#include "includes/struct.h"
+#include "includes/parsing.h"
+#include "includes/execution.h"
+#include "includes/expansion.h"
 
 void	exit_simpl_syntax(t_info *info)
 {

@@ -6,13 +6,13 @@
 #    By: ineimatu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 10:41:49 by ineimatu          #+#    #+#              #
-#    Updated: 2024/12/01 00:13:07 by martalop         ###   ########.fr        #
+#    Updated: 2024/12/18 21:03:13 by martalop         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRC = main.c env_utils.c env_utils2.c lexer_quots.c lexer.c token.c lexer_list.c err_messags.c exec_clean.c exec_utils.c pipex_utils.c syntax_err.c tkn_to_cmd.c parsing_utils.c exec_utils2.c redir_utils.c mini_cd.c mini_echo.c mini_env.c mini_exit.c mini_pwd.c mini_unset.c buitin_utils.c buitin_utils1.c mini_export.c export_utils.c export_utils2.c export_utils3.c export_utils4.c signals.c post_expanse.c expansion.c special_split.c break_down_str.c divide_str_expanse.c specific_expansion.c special_split2.c post_expanse2.c joins_and_quote_rmv.c exec_clean2.c executor.c exit_safe.c
+SRC = main.c env_utils.c env_utils2.c lex_and_pars/lexer_quots.c lex_and_pars/lexer.c lex_and_pars/token.c lex_and_pars/lexer_list.c execution/err_messags.c execution/exec_clean.c execution/exec_utils.c execution/pipex_utils.c syntax_err.c lex_and_pars/tkn_to_cmd.c lex_and_pars/parsing_utils.c execution/exec_utils2.c execution/redir_utils.c builtins/mini_cd.c builtins/mini_echo.c builtins/mini_env.c builtins/mini_exit.c builtins/mini_pwd.c builtins/mini_unset.c builtins/builtin_utils.c builtins/builtin_utils1.c builtins/mini_export.c builtins/export_utils.c builtins/export_utils2.c builtins/export_utils3.c builtins/export_utils4.c signals.c expansion/post_expanse.c expansion/expansion.c expansion/special_split.c expansion/break_down_str.c expansion/divide_str_expanse.c expansion/specific_expansion.c expansion/special_split2.c expansion/post_expanse2.c expansion/joins_and_quote_rmv.c execution/exec_clean2.c execution/executor.c exit_safe.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -20,7 +20,7 @@ CC = cc
 
 RFLAG = -lreadline
 
-INCLUDES = minishell.h lexer.h struct.h execution.h parsing.h builtin.h signal.h expansion.h libft/libft.h
+INCLUDES = includes/minishell.h includes/lexer.h includes/struct.h includes/execution.h includes/parsing.h includes/builtin.h includes/signal.h includes/expansion.h libft/libft.h
 
 CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 

@@ -6,12 +6,12 @@
 /*   By: ineimatu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 12:33:38 by ineimatu          #+#    #+#             */
-/*   Updated: 2024/10/15 11:27:46 by ineimatu         ###   ########.fr       */
+/*   Updated: 2024/12/18 20:45:57 by martalop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "signal.h"
+#include "includes/minishell.h"
+#include "includes/signal.h"
 
 void	handle_norm_sig(int sig)
 {
