@@ -44,3 +44,30 @@ Our list of tokens only has two types/variables:
 - Token:  '|', '<<', '<', '>', '>>')
 
 With this information we are able to create a list of commands (each with their own list of redirections)
+
+Understang Bash
+ -------------------------------------------------------------------------------
+The step to go from tokens to commands is actually pretty easy once you know how bash behaves. When you know the patterns/logic that it uses to analyze a string, everything becomes much more clear and easy.
+
+Here are some basic patterns that are ALWAYS true:
+- After a redirection token(<, <<, >, >>) the next thing to the right is going to be the filename/limiter for the heredoc -> in any case, A WORD
+
+    examples:
+
+        1. < infile      ✓
+     
+        2. infile <      X (this is a syntax error because after the '<' token there is nothing and it expects a filename)
+
+    In the 2nd example, 'infile' would be interpreted as a command
+
+- The '|' needs to be preceded by a word (not a token) and needs to have either a word or another redirection token right after
+
+
+About Execution
+ -------------------------------------------------------------------------------
+As I execute with a list of commands, the idea is simple: if I have more than one command -> while(command exists){execute command and move to the next one}
+
+I do the redirections(opening files) just before I execute
+
+
+
