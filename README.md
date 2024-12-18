@@ -56,7 +56,7 @@ Here are some basic patterns that are ALWAYS true:
 
         1. < infile      ✓
      
-        2. infile <      X (this is a syntax error because after the '<' token there is nothing and it expects a filename)
+        2. infile <      X (this is a syntax error because after the token there is nothing, and it expects a filename)
 
     In the 2nd example, 'infile' would be interpreted as a command
 
