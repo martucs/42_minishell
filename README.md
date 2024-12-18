@@ -60,7 +60,7 @@ Here are some basic patterns that are ALWAYS true:
 
     In the 2nd example, 'infile' would be interpreted as a command
 
-- The '|' needs to be preceded by a word (not a token) and needs to have either a word or another redirection token right after
+- The '|' needs to be preceded by a word (not a token) and needs to have either a word or another redirection token right after (you could want to handle what happens when you dont put anything after the '|', that's up to you)
 
 
 About execution
