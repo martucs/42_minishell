@@ -49,7 +49,7 @@ Our list of tokens only has two types/variables:
 - Token:  |, <<, <, >, >>
 
 We have an enum that specifies which type of token it is: pipe, heredoc, append, etc, but that's it.
-With this information we are able to create a list of commands (each with their own list of redirections) and execute just with that. 
+With this information we are able to create a list of commands (each with their own list of redirections) and execute correctly. 
 
 Understanding Bash
  -------------------------------------------------------------------------------
