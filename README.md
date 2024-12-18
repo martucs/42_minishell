@@ -14,7 +14,7 @@ The user input is always just one string. We use the 'readline' function to get 
 
 We chose to execute and expand with a list of commands. This makes the logic for the execution much easier to understand and it's very practical for the expansion as well.
 
-We did not do the bonus, so our minishell doesn't handle '&', '*'. 
+We did not do the bonus, so our minishell doesn't handle '&' or '*'. 
 
 This is what we do with the input:
 
