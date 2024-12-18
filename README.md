@@ -24,7 +24,7 @@ This is what we do with the input:
 
 - Execute with the list of commands
   
-- Save the result of the execution for the next round
+- Save the return value for the next round
 
 ---------------------------------------------------------------------------
 
