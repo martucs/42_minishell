@@ -42,7 +42,7 @@ I recommend the tokenization and creation of commands + execution to be done by 
 
 However, If one of you already knows how they are gonna execute and has a very specific structure, then the tokenizing can be done by the other person and there should be no problem. 
 
-Communicating these things in the begining (and always) is very important, and if none of you are sure of how to do things (which is normal in the early stages), you could end up doing unnecessary stuff or complicated code, which is not the end of the world, but I would really appreciated learning about the simple ways to make it work.
+Communicating these things in the begining (and always) is very important, and if none of you are sure of how to do things (which is normal in the early stages), you could end up doing unnecessary stuff or complicated code, which is not the end of the world, but I really appreciated learning about the simpler ways to make it work.
 
 Our list of tokens only has two types/variables:
 - Word:  anything except space/tab
