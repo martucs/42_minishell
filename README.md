@@ -42,4 +42,5 @@ I recommend the tokenization and execution to be done by the same person because
 Our list of tokens only has two types/variables:
 - Word:  everything except space/tab
 - Token:  '|', '<<', '<', '>', '>>')
+
 With this information we are able to create a list of commands (each with their own list of redirections)
