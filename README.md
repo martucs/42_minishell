@@ -63,7 +63,7 @@ Here are some basic patterns that are ALWAYS true:
 - The '|' needs to be preceded by a word (not a token) and needs to have either a word or another redirection token right after
 
 
-About Execution
+About execution
  -------------------------------------------------------------------------------
 As I execute with a list of commands, the idea is simple: if I have more than one command -> while(command exists){execute command and move to the next one}
 
