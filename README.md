@@ -61,7 +61,8 @@ Here are some basic patterns that are ALWAYS true:
     In the 2nd example, 'infile' would be interpreted as a command
 
 - The '|' needs to be preceded by a word (not a token) and needs to have either a word or another redirection token right after.
-    You could want to handle what bash does when you dont put anything after the '|' and there is something before, we didn't, but that's up to you.
+
+    You could want to handle what bash does when you dont put anything after the '|' and there is something before; we didn't, but that's up to you.
 
 
 About execution
