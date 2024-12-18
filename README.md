@@ -45,7 +45,7 @@ Our list of tokens only has two types/variables:
 
 With this information we are able to create a list of commands (each with their own list of redirections)
 
-Understang Bash
+Understanding Bash
  -------------------------------------------------------------------------------
 The step to go from tokens to commands is actually pretty easy once you know how bash behaves. When you know the patterns/logic that it uses to analyze a string, everything becomes much more clear and easy.
 
