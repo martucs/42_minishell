@@ -50,7 +50,7 @@ Understanding Bash
 The step to go from tokens to commands is actually pretty easy once you know how bash behaves. When you know the patterns/logic that it uses to analyze a string, everything becomes much more clear and easy.
 
 Here are some basic patterns that are ALWAYS true:
-- After a redirection token(<, <<, >, >>) the next thing to the right is going to be the filename/limiter for the heredoc -> in any case, A WORD
+- After a redirection token(<, <<, >, >>) the next thing to the right is always going to be the filename/limiter in the case of the heredoc -> in any case, A WORD
 
     examples:
 
