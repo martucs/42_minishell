@@ -29,21 +29,26 @@ This is what we do with the input:
 ---------------------------------------------------------------------------
 
 Some parts of this project that can be done pretty independently:
-1. Tokenization + execution
-2. Expansion
-3. Builtin functions
-4. Reading loop (prompt, readline, history)
-5. Environment
+1. Tokenization
+2. Creation of commands + execution
+3. Expansion
+4. Builtin functions
+5. Reading loop (prompt, readline, history)
+6. Environment
 
 Other parts, like the handling of signals, affect other things such as the reading loop and the execution. That's why I would recommend to do them at the end of the project, when everything already works.
 
-I recommend the tokenization and execution to be done by the same person because in order to create the tokens, you need to know what are the things that are going to be necessary for the execution of the commands. If your partner and you still don't have a clear idea of what you're gonna need, starting to tokenize is going to be more difficult and you might end up storing more information than necessary.
+I recommend the tokenization and creation of commands + execution to be done by the same person because in order to create the tokens, you need to know what are the things that are going to be necessary for the execution of the commands. 
+
+However, If one of you already knows how they are gonna execute and has a very specific structure, then the tokenizing can be done by the other person and there should be no problem. 
+
+Communicating these things in the begining (and always) is very important, and if none of you are sure of how to do things (which is normal in the early stages), you could end up doing unnecessary stuff or complicated code, which is not the end of the world, but I would really appreciated learning about the simple ways to make it work.
 
 Our list of tokens only has two types/variables:
-- Word:  everything except space/tab
-- Token:  '|', '<<', '<', '>', '>>')
+- Word:  anything except space/tab
+- Token:  |, <<, <, >, >>
 
-With this information we are able to create a list of commands (each with their own list of redirections)
+With this information we are able to create a list of commands (each with their own list of redirections) and execute.
 
 Understanding Bash
  -------------------------------------------------------------------------------
