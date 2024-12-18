@@ -35,7 +35,7 @@ Some parts of this project that can be done pretty independently:
 4. Reading loop (prompt, readline, history)
 5. Environment
 
-Other parts, like the handling of signals, affects other things such as the reading loop and the execution. That's why I would recommend to do them at the end of the project, when everything already works.
+Other parts, like the handling of signals, affect other things such as the reading loop and the execution. That's why I would recommend to do them at the end of the project, when everything already works.
 
 I recommend the tokenization and execution to be done by the same person because in order to create the tokens, you need to know what are the things that are going to be necessary for the execution of the commands. If your partner and you still don't have a clear idea of what you're gonna need, starting to tokenize is going to be more difficult and you might end up storing more information than necessary.
 
