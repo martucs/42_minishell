@@ -75,9 +75,28 @@ About execution
  -------------------------------------------------------------------------------
 As I execute with a list of commands, the idea is simple: 
 
-while command exists: {execute command, move to the next one}
+    while(command exists)
+    {
+      execute command
+      move to the next one
+    }
 
-I do the redirections(opening files) just before I execute
+Before we try to execute we need to ask ourselves some questions:
+- How many commands do we have?
+  
+- Are they a builtin or a normal cmd?
+
+The response to this questions is gonna determine whether we need a fork or not, and how we are gonna handle the file descriptors of redirections and pipes
+
+Before actually sending the command info to the 'execve' function, though, we need to do some things:
+1. Find command path
+2. Expansion
+3. Redirections
+   
+   3.1. Opening the files
+
+   3.2. Actual 'dup2' redirections (only 2: one for std_in, one for std_out)
+
 
 
 
