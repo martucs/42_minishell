@@ -67,7 +67,7 @@ Here are some basic patterns that are ALWAYS true:
 
 About execution
  -------------------------------------------------------------------------------
-As I execute with a list of commands, the idea is simple: if I have more than one command -> while(command exists){execute command and move to the next one}
+As I execute with a list of commands, the idea is simple: while(command exists){execute command, move to the next one}
 
 I do the redirections(opening files) just before I execute
 
