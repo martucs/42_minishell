@@ -53,9 +53,9 @@ With this information we are able to create a list of commands (each with their 
 
 Understanding Bash
  -------------------------------------------------------------------------------
-The step to go from tokens to commands is actually pretty easy once you know how bash behaves. When you know the patterns/logic that it uses to analyze a string, everything becomes much more clear and easy.
+The step to go from tokens to commands is actually pretty easy once you know the patterns/logic that bash uses to analyze the string.
 
-If you have already done tokenization you must have analyzed how bash separates words from tokens, how it handles spaces, etc, so this step I would say is similar and easier to write in code.
+If you have already done tokenization you must already know how bash separates words from tokens, how it handles spaces, etc, so this step is similar and much easier to write in code.
 
 Here are some basic patterns that are ALWAYS true:
 - After a redirection token (<, <<, >, >>) the next thing to the right is always going to be the filename/limiter in the case of the heredoc -> in any case, A WORD
