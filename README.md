@@ -98,7 +98,7 @@ Once you are familiar with bash's behaviour and how the terminal works, you'll f
 
 About execution
  -------------------------------------------------------------------------------
-As I execute with a list of commands, the idea is simple: 
+As we execute with a list of commands, the idea is simple: 
 
     while(command exists)
     {
@@ -113,15 +113,70 @@ Before we try to execute we need to ask ourselves some questions:
 
 The response to this questions is gonna determine whether we need a fork or not, and how we are gonna handle the file descriptors of redirections and pipes
 
-Before actually sending the command info to the 'execve' function, though, we need to do some things:
-1. Find command path
-2. Expansion
-3. Redirections
+TO KEEP IN MIND
+- Builtins should be executed in the main process because they are handmade functions.
+
+  The export builtin for example, modifies the environment so if we did it in a child process, we would never see the changes!
+  
+  This is exactly what happens when we have multiple commands and it's OKAY, it's suposed to be like that.
+- Whenever you use fork(), you are duplicating the information of the main process; this includes the filedescriptors, so be sure to use ONLY the necessary and get rid of the ones you no longer need in the parent and in the child processes.
+  
+- If you have 1 command, it's a builtin and has redirections, if you handle the filedescriptors in the parent, remember to set the std_in and std_out files to 0 and 1 again for the next line!
+
+I recommend thinking of always getting the information you need in the precise moment that you need it. Not before.
+
+For example, in the case where you have a simple command like 'ls', which is not a builtin, we open the redirection files INSIDE of the child process, not before because the parent doesn't need them and we would have to close them later. We handle the errors inside the child process. This can be more difficult if you do the bonus, though.
+
+This type of thing seems silly/obvious, but it really helps and it's a good practice.
+  
+Before sending the command to 'execve', we need to do:
+1. Expansion of the char **argv (of each command)
+2. Find command path
+3. Expansion of the filename of redirections (for each command)
+4. Redirections
    
-   3.1. Opening the files
+   4.1. Opening the files
 
-   3.2. Actual 'dup2' redirections (only 2: one for std_in, one for std_out)
+   4.2. Actual dup2() redirections (only 2: one for std_in, one for std_out)
+   
+As you can see, the expansion is done the exact moment before we need to use the argv and files, respectively.
 
+In the case of the multiple command, the loop of execution would look like this:
+
+    while(command)
+    {
+      prep_cmd: expand argv, find path, create pipe fds;
+      fork();
+      if (you are child)
+      {
+        open_files;
+        redirect;
+        if (you are builtin)
+        {
+          do_builtin;
+          exit();
+        }
+        execve;
+      }
+      -> next command
+    }
+
+Obviously every function needs to be protected, but this is basically it.
+
+Redirections, pipes & fds
+------------------------------------
+
+A good start is to establish a way to communicate commands with the pipes. Basically the pipex bonus.
+
+
+Expansion ✨
+------------------------------------
+
+Arguably the most difficult part of this project. It requires having things very very clear and unlike with the creation of commmands, trying to understand bash's behaviour is really not that easy. This is how I aproached it.
+
+
+Error managment
+------------------------------------
 
 
 
