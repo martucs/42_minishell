@@ -125,7 +125,7 @@ TO KEEP IN MIND
 
 I recommend thinking of always getting the information you need in the precise moment that you need it. Not before.
 
-For example, in the case where you have a simple command like 'ls', which is not a builtin, we open the redirection files INSIDE of the child process, not before because the parent doesn't need them and we would have to close them later. We handle the errors inside the child process. This can be more difficult if you do the bonus, though.
+For example, in the case where you have a simple command like 'ls', which is not a builtin, we open the redirection files INSIDE of the child process, not before because the parent doesn't need them and we would have to close them later. We handle the errors inside the child process. This may be more difficult if you do the bonus.
 
 This type of thing seems silly/obvious, but it really helps and it's a good practice.
   
@@ -166,13 +166,59 @@ Obviously every function needs to be protected, but this is basically it.
 Redirections, pipes & fds
 ------------------------------------
 
-A good start is to establish a way to communicate commands with the pipes. Basically the pipex bonus.
+A good start is to establish communication of multiple commands with the pipes. We are not going to think about redirections yet.
+
+Let's imagine we have these 3 commands:  
+
+ ls | cat | grep libft
+
+We know that we need a place to store the fds that the pipe() function is going to modify.
+In our exec structure, we declared it like so:
+ 
+      int  pipe_end[2];
+
+These are the 'boxes'/memory address we are going to send to the pipe function as argument. The function will change the value inside those memory addresses.
+
+Each time we go to prep_cmds, we ask ourselves: is there a next command?
+
+-> If there is, we use the pipe(exec->pipe_end)
+
+-> If not, it means we are the last command so there is no need for another pipe
+
+We start on the first command, we have a next, so we have the fds in exec->pipe_end.
+
+    pipe_end[0] for reading
+    pipe_end[1] for writing
+    
+For the first command we don't need the reading fd, cause we are simply going to write the result of 'ls'. 'cat' however, will need the reading fd of this first pipe to read what 'ls' has written.
+The second command will create the 2nd pipe and will need only the writing part. 'grep' will need only the reading fd of the second pipe because it's going to write in the terminal (std_out -> 1).
+
+If we think about it, for the execution of multiple commands
+
+ - The first commands needs the writing end of the actual pipe
+   
+ - The commands in the middle need the reading end of the last pipe + the writing end of the actual pipe
+
+ - The last command needs the reading end of the last pipe
+
+
+
+
+
+
+
+
+
 
 
 Expansion ✨
 ------------------------------------
 
 Arguably the most difficult part of this project. It requires having things very very clear and unlike with the creation of commmands, trying to understand bash's behaviour is really not that easy. This is how I aproached it.
+
+
+Files and general organization
+------------------------------------
 
 
 Error managment
