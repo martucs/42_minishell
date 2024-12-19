@@ -163,7 +163,7 @@ In the case of the multiple command, the loop of execution would look like this:
 
 Obviously every function needs to be protected, but this is basically it.
 
-Redirections, pipes & fds
+Pipes & redirections
 ------------------------------------
 
 A good start is to establish communication of multiple commands with the pipes. We are not going to think about redirections yet.
@@ -201,11 +201,30 @@ If we think about it, for the execution of multiple commands
 
  - The last command needs the reading end of the last pipe
 
+So, how do we store the fds of the previous pipes?
 
+I didn't want to put a 'previous' pointer in my cmd list, so instead I added two boxes in my cmd nodes:
 
+    int  fd_in;
+    int  fd_out;
+    
+Every time there is a next command, I save the writing end of the actual pipe in the fd_out of the actual command.
+Then I save the reading end of the actual pipe as the fd_in of the NEXT command.
 
+It looks like this:
 
+    if (cmd->next)
+  	{
+  		pipe(exec_info->pipe_end);
+  		cmd->fd_out = exec_info->pipe_end[1];
+  		cmd->next->fd_in = exec_info->pipe_end[0];
+  	}
 
+This way, each cmd has in their structure the necessary information in fd_in and fd_out to redirect to the corresponding pipes.
+
+The last step before sending the command to 'execve' would be to do the actual redirections with dup2() with the fd_in and fd_out of each command.
+
+Once that works, we can implement redirections pretty easily.
 
 
 
