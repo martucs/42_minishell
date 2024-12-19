@@ -222,7 +222,7 @@ It looks like this:
 
 This way, each cmd has in their structure the necessary information in fd_in and fd_out to redirect to the corresponding pipes.
 
-The last step before sending the command to 'execve' would be to do the actual redirections with dup2() with the fd_in and fd_out of each command.
+So, before sending the command to 'execve' we do the actual redirections with dup2() with the fd_in and fd_out of each command.
 
 Once that works, we can implement redirections pretty easily.
 
