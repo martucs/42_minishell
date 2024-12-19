@@ -55,8 +55,10 @@ Understanding Bash
  -------------------------------------------------------------------------------
 The step to go from tokens to commands is actually pretty easy once you know how bash behaves. When you know the patterns/logic that it uses to analyze a string, everything becomes much more clear and easy.
 
+If you have already done tokenization you must have analyzed how bash separates words from tokens, how it handles spaces, etc, so this step I would say is similar and easier to write in code.
+
 Here are some basic patterns that are ALWAYS true:
-- After a redirection token(<, <<, >, >>) the next thing to the right is always going to be the filename/limiter in the case of the heredoc -> in any case, A WORD
+- After a redirection token (<, <<, >, >>) the next thing to the right is always going to be the filename/limiter in the case of the heredoc -> in any case, A WORD
 
     examples:
 
@@ -70,6 +72,29 @@ Here are some basic patterns that are ALWAYS true:
 
     You could want to handle what bash does when you dont put anything after the '|' and there is something before; we didn't, but that's up to you.
 
+- Each command is separated by a '|'. If there is no pipe, there is only 1 command.
+  
+  example1:
+
+         ls libft srcs/execution -l
+  
+  This is all 1 command. It is 'ls' because it's the first word to appear. Whatever is in the first position is going to be the command.
+  Whatever comes after are all arguments or flags of that command. The flag doesn't have to be right next to the command and it should still work.
+  We simply have to send all the arguments in the char **argv to 'execve' and it will handle everything for us.
+
+  example2:
+
+          -a ls libft srcs/execution -l
+  
+  The command in this case is '-a'.
+
+  example3:
+
+          << lim > outfile cat > outfile2 -e
+  
+  The command here is 'cat' because all the other words before 'cat' are preceded by a redirection token, which means they are the filenames of those redirections.
+
+Once you are familiar with bash's behaviour and how the terminal works, you'll find that it's a simple process.  
 
 About execution
  -------------------------------------------------------------------------------
