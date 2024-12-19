@@ -203,13 +203,13 @@ If we think about it, for the execution of multiple commands
 
 So, how do we store the fds of the previous pipes?
 
-I didn't want to put a 'previous' pointer in my cmd list, so instead I added two boxes in my cmd nodes:
+I didn't want to put a 'previous' pointer in my cmd list, so instead I added two boxes for each node:
 
     int  fd_in;
     int  fd_out;
     
-Every time there is a next command, I save the writing end of the actual pipe in the fd_out of the actual command.
-Then I save the reading end of the actual pipe as the fd_in of the NEXT command.
+Every time there is a next command, I save the writing end of the actual pipe in the 'fd_out' of the actual command.
+Then I save the reading end of the actual pipe as the 'fd_in' of the NEXT command.
 
 It looks like this:
 
@@ -222,12 +222,60 @@ It looks like this:
 
 This way, each cmd has in their structure the necessary information in fd_in and fd_out to redirect to the corresponding pipes.
 
-So, before sending the command to 'execve' we do the actual redirections with dup2() with the fd_in and fd_out of each command.
-
 Once that works, we can implement redirections pretty easily.
 
+------------------------------------------------------------
+
+The order of redirections is very important. The heredoc is a special case we'll see later.
+
+Most of the times, the user is going to input commands that make sense, so the redirections should not affect the pipe fds, but sometimes the combination of redirections and pipes will make the pipes useless and your minishell should handle that just like bash does.
+
+Examples:
+
+          < infile cat | grep hello > outfile   
+      
+   This makes sense, in fd_in of 'cat' we'll have the fd of 'infile' and in fd_out of 'grep' we'll have the fd of 'outfile'
+
+          < infile cat > outfile | grep hello    
+          
+   In this last case the redirections override the pipe. The commands are still going to be executed, they simply won't be connected.
+   Therefore, 'cat' will write in 'outfile' and 'grep' won't receive any input. 
+  
+  It's very important to close the fds properly because in this case we could end up with the terminal forever waiting for input. I think 'grep' should realize that the pipe_end[1] has been closed and therefore the pipe_end[0] is also closed, and that will cause execve to exit. 
+  I believe this type of thing happens with very specific commands like 'grep' and 'cat' because they read from std_in line by line, and also because of the way the pipe() works.
 
 
+In any case, we have a list of redirections inside each command, where we store by order the fd of the files.
+
+We go through our list like this:
+
+    while(redir exists)
+    {
+      open file
+      if (there was a previous fd_in or fd_out)  // could be from previous redirection of the same type 
+                                                 // could be from pipe
+      {
+        close(previous fd);
+      }
+      save file fd in fd_in or fd_out
+      -> next redir
+    }
+            
+Everytime we find a redirection of type INPUT or HEREDOC we open the file and put that fd into the fd_in.
+
+Everytime we find a redirection of type OUTPUT or APPEND we open the file and put that fd into the fd_out.
+
+This way, when we do dup2(), we only redirect once with the fd_in and once with the fd_out.
+
+HEREDOC
+
+The heredoc is special because it needs to be done before we start execution.
+
+I chose to do it using a pipe, writing in the writing end and storing the reading end in the 'fd' variable in the redirections list.
+
+This means that when we arrive to the execution part where we open the files to redirect, we won't have to open anything for the heredoc and we'll simply redirect.
+
+Take a good look at how bash handles errors while opening the files, the order of the messages, and the files it creates.
 
 
 Expansion ✨
@@ -237,10 +285,6 @@ Arguably the most difficult part of this project. It requires having things very
 
 
 Files and general organization
-------------------------------------
-
-
-Error managment
 ------------------------------------
 
 
