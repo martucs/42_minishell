@@ -304,6 +304,12 @@ Steps:
 6. Divide by spaces if necessary
 7. Remove quotes
 
+It may seem a little confusing, but I only worked with strings and char **arrays, I didn't create a structure or list for this process.
+
+This is an example with a visual representation of the divisions:
+
+![expansion](https://github.com/user-attachments/assets/92c545b2-a00c-46c6-92ea-49beff178c5b)
+
 
 Files and general organization
 ------------------------------------
