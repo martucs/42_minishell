@@ -283,6 +283,27 @@ Expansion ✨
 
 Arguably the most difficult part of this project. It requires having things very very clear and unlike with the creation of commmands, trying to understand bash's behaviour is really not that easy. This is how I aproached it.
 
+THINGS TO KEEP IN MIND:
+- Expansion is done in a function that receives a char *string and returns a char **array
+
+  This char **array is separated accordingly
+
+- We don't handle what happens when someone exports a variable with quotes inside. (ex: export test="hola'quetal")
+
+  Our program doesn't segfault but it also doesn't behave like bash.
+  We do handle correctly variables with spaces inside.
+
+- After actual expansion, we are not done. We'll need to handle error messages + the char **argv sent to 'execve'.
+
+Steps:
+1. Divide initial string into sections ( , ", ')
+2. Divide each section between expandible and non-expandible part
+3. Search & replace the expandible part
+4. Join expandible part with non-expandible
+5. Join all sections
+6. Divide by spaces if necessary
+7. Remove quotes
+
 
 Files and general organization
 ------------------------------------
