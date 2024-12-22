@@ -308,7 +308,7 @@ It may seem a little confusing, but I only worked with strings and char **arrays
 
 This is an example with a visual representation of the divisions:
 
-![expansion](https://github.com/user-attachments/assets/92c545b2-a00c-46c6-92ea-49beff178c5b)
+![image](https://github.com/user-attachments/assets/601c1814-1416-41d3-95e5-4472cfa2d36e)
 
 
 Files and general organization
