@@ -307,7 +307,7 @@ This is how the loop to expand the argv looks like:
   		aux = expansion(command->argv[x]) // we send char *, it returns char **
   		while (aux && aux[i])
   		{
-            // function to add aux[i] to new_argv
+                    function to add aux[i] to new_argv
   			i++;
   		}
       x++;
