@@ -295,7 +295,30 @@ THINGS TO KEEP IN MIND:
 
 - After actual expansion, we are not done. We'll need to handle error messages + the char **argv sent to 'execve'.
 
-- If we are expanding a filename (redirection file), 
+- Expansion of the char **argv and the filename (redirection file) will be done independently. We use the same function and then we manage its results.
+
+This is how the loop to expand the argv looks like:
+
+    char **aux = NULL; 
+    char **new_argv = NULL; 
+    while(command->argv[x])
+    {
+  		i = 0;
+  		aux = expansion(command->argv[x]) // we send char *, it returns char **
+  		while (aux && aux[i])
+  		{
+            // function to add aux[i] to new_argv
+  			i++;
+  		}
+      x++;
+    }
+    
+    // the idea is that new_arg will replace argv
+    
+    free_array(command->argv);
+    command->argv = new_arg;
+    
+This is just one way of doing it, you can choose to store the char ** however you like.
 
 Steps:
 1. Divide initial string into sections ( , ", ')
@@ -315,7 +338,7 @@ This is an example with a visual representation of the divisions:
 
 The first division creates sections composed of strings without quotes, strings with double quotes, and strings with simple quotes.
 
-Remember that the only possible spaces that we can receive will be inside quotes, therefore they DON'T affect the char **argv. It's all still considered 1 string. Later we'll see a case with separation of the argv.
+The only possible spaces that we can receive will be **inside** quotes, therefore they DON'T affect the char **argv. It's all still considered 1 string. Later we'll see a case with separation of the argv.
 
 <ins>Step 2</ins>
 
