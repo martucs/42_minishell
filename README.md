@@ -309,7 +309,7 @@ It may seem a little confusing, but I only worked with strings and char **arrays
 This is an example with a visual representation of the divisions:
 
 ![image](https://github.com/user-attachments/assets/601c1814-1416-41d3-95e5-4472cfa2d36e)
-
+<ins>Step 1</ins>
 
 Files and general organization
 ------------------------------------
