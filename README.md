@@ -297,7 +297,7 @@ THINGS TO KEEP IN MIND:
 
 - Expansion of the char **argv and the filename (redirection file) will be done independently. We use the same function and then we manage its results.
 
-This is how the loop to expand the argv looks like:
+This is how the loop to expand the argv can look like:
 
     char **aux = NULL; 
     char **new_argv = NULL; 
