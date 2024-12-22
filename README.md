@@ -295,6 +295,8 @@ THINGS TO KEEP IN MIND:
 
 - After actual expansion, we are not done. We'll need to handle error messages + the char **argv sent to 'execve'.
 
+- If we are expanding a filename (redirection file), 
+
 Steps:
 1. Divide initial string into sections ( , ", ')
 2. Divide each section between expandible and non-expandible part
@@ -308,9 +310,14 @@ It may seem a little confusing, but I only worked with strings and char **arrays
 
 This is an example with a visual representation of the divisions:
 
-![image](https://github.com/user-attachments/assets/5202406e-a201-4bb4-b475-f6ed9e5692d4)
-
+![image](https://github.com/user-attachments/assets/68db58f2-3834-4a63-b66f-0fb4b5b3ecb1)
 <ins>Step 1</ins>
+
+The first division creates sections composed of strings without quotes, strings with double quotes, and strings with simple quotes.
+
+Remember that the only possible spaces that we can receive will be inside quotes, therefore they DON'T affect the char **argv. It's all still considered 1 string. Later we'll see a case with separation of the argv.
+
+<ins>Step 2</ins>
 
 Files and general organization
 ------------------------------------
