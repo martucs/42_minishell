@@ -96,7 +96,7 @@ Here are some basic patterns that are ALWAYS true:
 
 Once you are familiar with bash's behaviour and how the terminal works, you'll find that it's a simple process.  
 
-About execution
+Execution
  -------------------------------------------------------------------------------
 As we execute with a list of commands, the idea is simple: 
 
