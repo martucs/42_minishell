@@ -331,7 +331,7 @@ Steps:
 
 It may seem a little confusing, but I only worked with strings and char **arrays, I didn't create a structure or list for this process.
 
-This is an example with a visual representation of the divisions:
+This is a visual representation of the general process:
 
 ![image](https://github.com/user-attachments/assets/68db58f2-3834-4a63-b66f-0fb4b5b3ecb1)
 <ins>Step 1</ins>
