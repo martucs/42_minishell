@@ -1,4 +1,4 @@
-# 42_minishell
+# 42_minishell GUIDE
 ~ Reproducing the behaviour of the bash terminal ~
 
 In its essence, minishell has to:
